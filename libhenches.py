@@ -268,8 +268,9 @@ def genHenches(numHenches, level, classes, market, al, spells, names, profs,gear
         ecl = 1
       if ecl > 0:
         slist = libspellbook.genSpells(spells, ecl, mod(stats[1]), False)
+        ostring += "\n\t" + prefix+"Spells known: "
         for i in range(0,len(slist)):
-          ostring += "\n\t" + prefix + str(i+1) + "s: " + ", ".join(slist[i])
+          ostring += "\t" +prefix + str(i+1) + ": " + ", ".join(slist[i])
 
     if level > 0 and gear:
       items = []
