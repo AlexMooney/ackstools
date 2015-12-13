@@ -27,8 +27,8 @@ def main():
 
   supply_mass = mans*days
   # assum: 1.5gp/man*week for standard rations, 3.5gp/man*week for iron rations
-  supply_cost = mans * (STD_RATION_PRICE * days + \
-    min(0, (IRON_RATION_PRICE - STD_RATION_PRICE) * (days - 7)))
+  supply_cost = (mans * (STD_RATION_PRICE * days + \
+    min(0, (IRON_RATION_PRICE - STD_RATION_PRICE) * (days - 7)))) / 7.0
   num_mules_60 = int(math.ceil(supply_mass / MULE_CAP_60))
   num_mules_120 = int(math.ceil(supply_mass / MULE_CAP_120))
   print "At 60' speed, you will need %d mules to carry rations, and have %0.1f stone extra carrying capacity."%(num_mules_60, num_mules_60 * MULE_CAP_60 - supply_mass)
