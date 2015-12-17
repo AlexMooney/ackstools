@@ -6,6 +6,7 @@ import libspellbook
 import tables
 from flask import render_template
 from flask import request
+import terrain
 
 app = Flask(__name__)
 
@@ -30,7 +31,7 @@ def halp():
 
 @app.route('/hench')
 @app.route('/hench/')
-def genrandom(market=None, pc=False):
+def genhenches(market=None, pc=False):
   market = int(request.args.get('market',4))
   pc = request.args.get('pc','')
   if not market or 1 > market or 6 < market:
@@ -44,7 +45,15 @@ def genrandom(market=None, pc=False):
       market, True, usespells, names, profs, False))
 
   ol = [[s.replace('\n','. ') for s in l] for l in ol]
-  return render_template('random.html',levels=ol) 
+  return render_template('hench.html',levels=ol) 
+
+@app.route('/terrain')
+@app.route('/terrain/')
+def genterrain(hextype=None):
+  hextype = request.args.get('hextype', 'Clear')
+  features = terrain.gen_terrain(hextype)
+  features = ["%s x%d"%(feature, num) for (feature, num) in features]
+  return render_template('terrain.html', features=features)
 
 if __name__ == "__main__":
   app.debug = True
