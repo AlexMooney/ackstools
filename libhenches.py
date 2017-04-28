@@ -190,6 +190,9 @@ def genHenches(numHenches, level, classes, market, al, spells, names, profs,gear
         for i in range(0,level-1):
           hp += max(random.randint(1,hd)+mod(stats[4]),1) 
       ostring += ", L" + str(level) + " " + poss[ind][0] + ", HP: " + str(hp)
+    else:
+      poss = [("Normal Man", 4, [], "", 0.5, 1.0)]
+      ind = 0
 
     if names != []:
       g = float(poss[ind][4])
